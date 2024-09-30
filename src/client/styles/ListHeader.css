@@ -1,0 +1,33 @@
+
+.app-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.app-desc {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+.goal-input {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.goal-input input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  flex: 1;
+}
+
+.goal-input button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.goal-list {
+  list-style: none;
+  padding: 0;
+}
+
