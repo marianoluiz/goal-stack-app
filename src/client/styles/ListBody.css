@@ -1,15 +1,20 @@
-.goal-list li {
+.goal-list {
+  list-style: none;
+  padding: 0;
+}
+
+.goal-list div {
   padding: 0.5rem;
   font-size: 1.2rem;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.goal-list li.completed {
+.goal-list div.completed span {
   text-decoration: line-through;
   color: rgb(128, 128, 128);
 }
 
-.goal-list li:hover {
+.goal-list div:hover {
   background-color: #f0f0f0;
 }

@@ -1,20 +1,26 @@
-import useGoals from './hooks/useGoals.ts'
-import './styles/App.css'
-import ListHeader from './components/ListHeader.tsx';
-import ListBody from './components/ListBody.tsx';
+// src/client/App.tsx
+import useGoals from './hooks/useGoals';
+import './styles/App.css';
+import ListHeader from './components/ListHeader';
+import ListBody from './components/ListBody';
 
 function App() {
-
-  const { goals, goalText,toggleGoalCompletion, setGoalText, addGoal } = useGoals()
+  const { goals, goalText, setGoalText, addGoal, deleteGoal, updateGoal, toggleGoalCompletion } = useGoals();
 
   return (
     <div className="app">
-      
-      <ListHeader goalText={goalText} setGoalText={setGoalText} addGoal={addGoal}/>
-
-      <ListBody goals={goals} toggleGoalCompletion={toggleGoalCompletion}/>
+      <ListHeader 
+        goalText={goalText}
+        setGoalText={setGoalText}
+        addGoal={addGoal} />
+      <ListBody
+        goals={goals}
+        toggleGoalCompletion={toggleGoalCompletion}
+        deleteGoal={deleteGoal}
+        updateGoal={updateGoal}
+      />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

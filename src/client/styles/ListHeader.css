@@ -1,12 +1,13 @@
-
 .app-title {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
+
 .app-desc {
   font-size: 1rem;
   margin-bottom: 1.5rem;
 }
+
 .goal-input {
   display: flex;
   justify-content: center;
@@ -25,9 +26,3 @@
   font-size: 1rem;
   cursor: pointer;
 }
-
-.goal-list {
-  list-style: none;
-  padding: 0;
-}
-

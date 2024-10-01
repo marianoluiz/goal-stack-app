@@ -1,5 +1,6 @@
+// src/client/components/ListHeader.tsx
 import React from 'react';
-import '../styles/ListHeader.css'
+import '../styles/ListHeader.css';
 
 interface HeaderListProps {
   goalText: string;
@@ -22,7 +23,7 @@ const ListHeader: React.FC<HeaderListProps> = ({ goalText, setGoalText, addGoal 
         <button onClick={addGoal}>Add Goal</button>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default ListHeader;
