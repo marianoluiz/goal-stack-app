@@ -1,20 +1,59 @@
+:root {
+  --primary-color: #333;
+  --secondary-color: #888;
+  --completed-color: rgb(128, 128, 128);
+  --hover-bg-color: #f0f0f0;
+  --font-size: 1.2rem;
+  --padding: 0.5rem;
+}
+
 .goal-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.goal-list div {
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  cursor: pointer;
+.goal-list__item {
+  display: flex;
+  align-items: center;
+  padding: var(--padding);
+  font-size: var(--font-size);
   transition: background-color 0.3s;
+  border-bottom: 1px solid var(--secondary-color);
 }
 
-.goal-list div.completed span {
+.goal-list__item:last-child {
+  border-bottom: none;
+}
+
+.goal-list__item:hover {
+  background-color: var(--hover-bg-color);
+}
+
+.goal-list__item--completed .goal-list__text {
   text-decoration: line-through;
-  color: rgb(128, 128, 128);
+  color: var(--completed-color);
 }
 
-.goal-list div:hover {
-  background-color: #f0f0f0;
+.goal-list__text {
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.goal-list__input {
+  padding: var(--padding);
+  font-size: var(--font-size);
+  flex-grow: 1;
+}
+
+.goal-list__button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: var(--font-size);
+}
+
+.goal-list__button:hover {
+  color: var(--secondary-color);
 }

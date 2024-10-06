@@ -2,23 +2,19 @@
 import { useState } from 'react';
 
 const useEditText = () => {
-  const [isEditing, setIsEditing] = useState<number | null>(null);
+  const [isEditing, setIsEditing] = useState<string | null>(null);
   const [editedText, setEditedText] = useState<string>('');
 
-  const handleSave = (id: number, updateGoal: (id: number, updatedText: string) => void) => {
+  const handleSave = (id: string, updateGoal: (id: string, updatedText: string) => void) => {
     updateGoal(id, editedText);
     setIsEditing(null);
-  };
-
-  const handleBlur = (id: number, updateGoal: (id: number, updatedText: string) => void) => {
-    handleSave(id, updateGoal);
   };
 
   const handleInputChange = (newText: string) => {
     setEditedText(newText);
   };
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>, id: number, updateGoal: (id: number, updatedText: string) => void) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>, id: string, updateGoal: (id: string, updatedText: string) => void) => {
     if (event.key === 'Enter') {
       handleSave(id, updateGoal);
     }
@@ -29,9 +25,9 @@ const useEditText = () => {
     editedText,
     setIsEditing,
     setEditedText,
-    handleBlur,
     handleKeyPress,
     handleInputChange,
+    handleSave
   };
 };
 

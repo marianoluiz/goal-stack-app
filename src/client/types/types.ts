@@ -1,6 +1,6 @@
 
 export interface Goal {
-  id: number;
+  id: string;
   text: string;
   completed: boolean;
 }

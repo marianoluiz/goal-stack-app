@@ -2,13 +2,11 @@
 import React from 'react';
 import '../styles/ListHeader.css';
 
-interface HeaderListProps {
-  goalText: string;
-  setGoalText: (text: string) => void;
+const ListHeader: React.FC<{ 
+  goalText: string; 
+  setGoalText: (text: string) => void; 
   addGoal: () => void;
-}
-
-const ListHeader: React.FC<HeaderListProps> = ({ goalText, setGoalText, addGoal }) => {
+}> = ({ goalText, setGoalText, addGoal }) => {
   return (
     <>
       <h1 className="app-title">GoalStack App</h1>
