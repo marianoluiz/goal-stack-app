@@ -9,7 +9,8 @@ function App() {
 
   return (
     <div className="app">
-      <ListHeader 
+      <ListHeader
+        goals={goals}
         goalText={goalText}
         setGoalText={setGoalText}
         addGoal={addGoal} />

@@ -1,3 +1,7 @@
+:root {
+  --main-bg: rgb(245, 245, 245);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,5 +9,5 @@
 }
 
 body {
-  background-color: rgb(241, 241, 223);
+  background-color: var(--main-bg);
 }

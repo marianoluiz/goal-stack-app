@@ -2,27 +2,28 @@
   --primary-color: #333;
   --secondary-color: #888;
   --completed-color: rgb(128, 128, 128);
-  --hover-bg-color: #f0f0f0;
+  --hover-bg-color: rgb(128, 128, 128, 0.3);
   --font-size: 1.2rem;
+  --font-size-smallscr: 1rem;
   --padding: 0.5rem;
+  --padding-smallscr: 0.3rem;
 }
 
 .goal-list {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .goal-list__item {
   display: flex;
-  align-items: center;
   padding: var(--padding);
   font-size: var(--font-size);
   transition: background-color 0.3s;
   border-bottom: 1px solid var(--secondary-color);
 }
 
-.goal-list__item:last-child {
+.goal-list__item:first-child {
   border-bottom: none;
 }
 
@@ -36,17 +37,22 @@
 }
 
 .goal-list__text {
+  flex: 0 0 80%;
   flex-grow: 1;
   cursor: pointer;
+  text-align: left;
+  word-break: break-word; 
 }
 
 .goal-list__input {
+  flex: 0 0 80%;
+  flex-grow: 1;
   padding: var(--padding);
   font-size: var(--font-size);
-  flex-grow: 1;
 }
 
-.goal-list__button {
+.goal-list__button{
+  flex: 0 0 6.6667%;
   background: none;
   border: none;
   color: var(--primary-color);
@@ -54,6 +60,46 @@
   font-size: var(--font-size);
 }
 
+ .edit-button {
+  flex: 0 0 6.6667%;
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: var(--font-size);
+  margin: 0 .2rem 0 .2rem;
+}
 .goal-list__button:hover {
   color: var(--secondary-color);
+}
+
+.checkbox {
+  width: 1.5rem; /* Fixed width */
+  height: 1.5rem; /* Fixed height */
+  cursor: pointer;
+  margin: 0 0 0 .2rem;
+}
+
+@media screen and (max-width: 600px) {
+  .goal-list__input {
+    flex: 0 0 70%;
+    flex-grow: 1;
+    padding: var(--padding-smallscr);
+    font-size: var(--font-size-smallscr);
+  }
+  .goal-list__text {
+    flex: 0 0 70%;
+  /*   flex: [flex-grow] [flex-shrink] [flex-basis];*/  
+    flex-grow: 1;
+    cursor: pointer;
+    text-align: left;
+    word-break: break-word; 
+  }
+  .goal-list__button, .edit-button {
+    flex: 0 0 10%; /* Adjust flex-basis for small screens */
+    font-size: calc(var(--font-size) * 0.8); /* Adjust font size */
+  }
+  .checkbox {
+    flex: 0 0 10%; /* Adjust flex-basis for small screens */
+  }
 }
