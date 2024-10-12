@@ -14,7 +14,7 @@ const useGoals = () => {
       setGoals(JSON.parse(storedGoals));
     }
   }, []);
-  
+
   // Save goals to local storage
   useEffect(() => {
     localStorage.setItem('goals', JSON.stringify(goals));
@@ -41,12 +41,20 @@ const useGoals = () => {
 
   // Update a goal
   const updateGoal = (id: string, updatedText: string) => {
-    setGoals(goals.map((goal) => (goal.id === id ? { ...goal, text: updatedText } : goal)));
+    setGoals(
+      goals.map((goal) =>
+        goal.id === id ? { ...goal, text: updatedText } : goal,
+      ),
+    );
   };
 
   // Toggle goal completion
   const toggleGoalCompletion = (id: string) => {
-    setGoals(goals.map((goal) => (goal.id === id ? { ...goal, completed: !goal.completed } : goal)));
+    setGoals(
+      goals.map((goal) =>
+        goal.id === id ? { ...goal, completed: !goal.completed } : goal,
+      ),
+    );
   };
 
   return {

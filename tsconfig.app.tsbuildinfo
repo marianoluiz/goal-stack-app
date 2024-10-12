@@ -1,0 +1,1 @@
+{"root":["./src/client/app.tsx","./src/client/main.tsx","./src/client/components/listbody.tsx","./src/client/components/listheader.tsx","./src/client/hooks/useedittext.ts","./src/client/hooks/usegoals.ts","./src/client/types/types.ts"],"version":"5.6.3"}

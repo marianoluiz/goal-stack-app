@@ -5,6 +5,9 @@
 # node modules
 node_modules
 
+# Build directories
+dist
+
 # Logs
 logs
 *.log

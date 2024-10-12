@@ -5,7 +5,15 @@ import ListHeader from './components/ListHeader';
 import ListBody from './components/ListBody';
 
 function App() {
-  const { goals, goalText, setGoalText, addGoal, deleteGoal, updateGoal, toggleGoalCompletion } = useGoals();
+  const {
+    goals,
+    goalText,
+    setGoalText,
+    addGoal,
+    deleteGoal,
+    updateGoal,
+    toggleGoalCompletion,
+  } = useGoals();
 
   return (
     <div className="app">
@@ -13,7 +21,8 @@ function App() {
         goals={goals}
         goalText={goalText}
         setGoalText={setGoalText}
-        addGoal={addGoal} />
+        addGoal={addGoal}
+      />
       <ListBody
         goals={goals}
         toggleGoalCompletion={toggleGoalCompletion}
