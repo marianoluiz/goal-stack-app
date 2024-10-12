@@ -5,9 +5,10 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true, //added this
-
+    "esModuleInterop": true,
+    
     /* Bundler mode */
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     //"allowImportingTsExtensions": true
     "isolatedModules": true,
     "moduleDetection": "force",
@@ -18,7 +19,11 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    //added this
+    "baseUrl": "./", // Add this line
+    
   },
   "include": ["vite.config.ts", "src/server/**/*.ts"]
 

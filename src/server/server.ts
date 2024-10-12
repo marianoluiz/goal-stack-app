@@ -1,15 +1,26 @@
-// server.ts
-import express, { Request, Response } from 'express';
-const app = express();
-const PORT = process.env.PORT || 5173;
+// src/server/server.ts
 
-// Middleware to parse JSON bodies
+import express from 'express';
+import dotenv from 'dotenv';
+import goalRoutes from './routes/goalRoutes.js';
+import errorHandler from './middlewares/errorHandler.js';
+
+dotenv.config();
+
+const app = express();
+const PORT = process.env.DB_PORT || 3000;
+
+// Middleware to parse JSON bodies cuz json is stringified in http requests
+
 app.use(express.json());
 
-// Define a simple route
-app.get('/', (_req: Request, res: Response) => {
-  res.send('Welcome to the backend, test agian?');
-});
+// Use goal routes
+app.use('/api', goalRoutes);
+
+// i need to call next(error); to go to next middleware, in my code, i never used next()
+
+// Use error handler middleware
+app.use(errorHandler);
 
 // Start the server
 app.listen(PORT, () => {
