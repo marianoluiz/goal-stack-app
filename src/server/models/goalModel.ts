@@ -18,7 +18,7 @@ export const addGoal = async (goal: Goal): Promise<void> => {
     [      
       goal.goal_id,
       goal.description,
-      goal.is_completed ? 1 : 0
+      goal.is_completed ? true : false
     ]
   )
 }

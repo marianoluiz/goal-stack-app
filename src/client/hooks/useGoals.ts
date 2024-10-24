@@ -7,7 +7,7 @@ const useGoals = () => {
 
   const [goals, setGoals] = useState<Goal[]>([]);
   
-  // goalText is the input field text when u add goals
+  // goalInputText is the input field text when u add goals
   const [goalInputText, setGoalInputText] = useState("");
 
   useEffect(() => {
@@ -67,13 +67,16 @@ const useGoals = () => {
       await goalService.toggleGoalCompletion(goal_id);
       setGoals((prevGoals) =>
         prevGoals.map((goal) =>
-          goal.goal_id === goal_id ? { ...goal, completed: !goal.is_completed } : goal
+          goal.goal_id === goal_id ? { ...goal, is_completed: !goal.is_completed } : goal
         )
       );
+
     } catch (error) {
       console.error("Failed to toggle goal completion", error);
     }
   };
+
+
 
   return {
     goals,

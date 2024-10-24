@@ -37,15 +37,21 @@ export const updateGoal = async (
   goalId: string,
   description: string
 ): Promise<void> => {
+
   const response = await fetch(`${API_URL}/${goalId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ description }),
   });
+  
   if (!response.ok) throw new Error("Failed to update goal");
 };
 
-export const toggleGoalCompletion = async (goalId: string): Promise<void> => {
-  const response = await fetch(`${API_URL}/${goalId}`, { method: "PATCH" });
+export const toggleGoalCompletion = async (
+  goal_id: string
+): Promise<void> => {
+  const response = await fetch(`${API_URL}/${goal_id}`, { method: "PATCH" 
+  });
+
   if (!response.ok) throw new Error("Failed to toggle goal completion");
 };
