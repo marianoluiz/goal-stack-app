@@ -1,66 +1,84 @@
 // src/client/hooks/useGoals.ts
-import { v4 as uuidv4 } from 'uuid';
-import { useState, useEffect } from 'react';
-import { Goal } from '../types/types';
+import { useState, useEffect } from "react";
+import { Goal } from "../types/types";
+import * as goalService from "../services/goalService";
 
 const useGoals = () => {
-  const [goals, setGoals] = useState<Goal[]>([]);
-  const [goalText, setGoalText] = useState('');
 
-  // Load goals from local storage
+  const [goals, setGoals] = useState<Goal[]>([]);
+  
+  // goalText is the input field text when u add goals
+  const [goalInputText, setGoalInputText] = useState("");
+
   useEffect(() => {
-    const storedGoals = localStorage.getItem('goals');
-    if (storedGoals) {
-      setGoals(JSON.parse(storedGoals));
-    }
+    const fetchGoals = async () => {
+      try {
+        const data = await goalService.fetchGoals();
+        setGoals(data);
+      } catch (error) {
+        console.error("Failed to fetch goals", error);
+      }
+    };
+    fetchGoals();
   }, []);
 
-  // Save goals to local storage
-  useEffect(() => {
-    localStorage.setItem('goals', JSON.stringify(goals));
-  }, [goals]);
+  const addGoal = async () => {
+    try {
+      if (goalInputText.trim() === "") return;
 
-  // Add a new goal
-  const addGoal = () => {
-    if (goalText.trim() === '') return;
+      const newGoal = await goalService.addGoal(goalInputText);
 
-    const newGoal: Goal = {
-      id: uuidv4(),
-      text: goalText,
-      completed: false,
-    };
+      // Schedule state update
+      setGoals((prevGoals) => [...prevGoals, newGoal]);
 
-    setGoals([...goals, newGoal]);
-    setGoalText('');
+      // Clear the input field
+      setGoalInputText("");
+  
+    } catch (error) {
+      console.error("Failed to add goal", error);
+    }
   };
 
-  // Delete a goal
-  const deleteGoal = (id: string) => {
-    setGoals(goals.filter((goal) => goal.id !== id));
+  const deleteGoal = async (goal_id: string) => {
+    try {
+      await goalService.deleteGoal(goal_id);
+      setGoals((prevGoals) => prevGoals.filter((goal) => goal.goal_id !== goal_id));
+    } catch (error) {
+      console.error("Failed to delete goal", error);
+    }
   };
 
-  // Update a goal
-  const updateGoal = (id: string, updatedText: string) => {
-    setGoals(
-      goals.map((goal) =>
-        goal.id === id ? { ...goal, text: updatedText } : goal,
-      ),
-    );
+  const updateGoal = async (goal_id: string, description: string) => {
+    try {
+      await goalService.updateGoal(goal_id, description);
+      
+      setGoals((prevGoals) =>
+        prevGoals.map((goal) =>
+          goal.goal_id === goal_id ? { ...goal, description } : goal
+        )
+      );
+    } catch (error) {
+      console.error("Failed to update goal", error);
+    }
   };
 
-  // Toggle goal completion
-  const toggleGoalCompletion = (id: string) => {
-    setGoals(
-      goals.map((goal) =>
-        goal.id === id ? { ...goal, completed: !goal.completed } : goal,
-      ),
-    );
+  const toggleGoalCompletion = async (goal_id: string) => {
+    try {
+      await goalService.toggleGoalCompletion(goal_id);
+      setGoals((prevGoals) =>
+        prevGoals.map((goal) =>
+          goal.goal_id === goal_id ? { ...goal, completed: !goal.is_completed } : goal
+        )
+      );
+    } catch (error) {
+      console.error("Failed to toggle goal completion", error);
+    }
   };
 
   return {
     goals,
-    goalText,
-    setGoalText,
+    goalInputText,
+    setGoalInputText,
     addGoal,
     deleteGoal,
     updateGoal,

@@ -1,35 +1,39 @@
-// src/client/components/ListHeader.tsx
-import React from 'react';
-import '../styles/ListHeader.css';
-import { Goal } from '../types/types.tsx';
+// src/client/components/views/ListHeader.tsx
+import React from "react";
 
-const ListHeader: React.FC<{
-  goalText: string;
-  setGoalText: (text: string) => void;
-  addGoal: () => void;
-  goals: Goal[];
-}> = ({ goalText, setGoalText, addGoal, goals }) => {
-  let goalsCompletedCount = goals.filter((goal) => goal.completed === true);
+import { useGoalsContext } from './../hooks/GoalsContext';
+import './../styles/ListHeader.component.css';
+
+const ListHeader: React.FC = () => {
+
+    const {
+    goalInputText
+    ,setGoalInputText
+    ,addGoal
+    ,goals
+  } = useGoalsContext();
+
+  const goalsCompletedCount = goals.filter((goal) => goal.is_completed).length;
 
   return (
-    <>
-      <div className="insights-div">
+    <div >
+      <div className="div-1st-row">
         <div>
           <h1 className="app-title">GoalStack App</h1>
           <p className="app-desc">Track your goals, gain insights.</p>
         </div>
-        <div>
-          <span className="goal-count-div">
-            {goalsCompletedCount.length}/{goals.length}
-          </span>
+
+        <div className="insights-div">
+          <p>{goalsCompletedCount}/{goals.length}</p>
         </div>
       </div>
+
 
       <div className="goal-input">
         <input
           type="text"
-          value={goalText}
-          onChange={(e) => setGoalText(e.target.value)}
+          value={goalInputText}
+          onChange={(e) => setGoalInputText(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') addGoal();
           }}
@@ -37,7 +41,7 @@ const ListHeader: React.FC<{
         />
         <button onClick={addGoal}>Add Goal</button>
       </div>
-    </>
+    </div>
   );
 };
 

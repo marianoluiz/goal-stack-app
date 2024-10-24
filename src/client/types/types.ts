@@ -1,5 +1,5 @@
 export interface Goal {
-  id: string;
-  text: string;
-  completed: boolean;
+  goal_id: string;
+  description: string;
+  is_completed: boolean;
 }
