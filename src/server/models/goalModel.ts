@@ -3,41 +3,34 @@
 import pool from '../config/database.js';
 
 export interface Goal {
-  goalId: string;
+  goal_id: string;
   description: string;
-  isCompleted: boolean;
-  startDate: Date;
-  endDate?: Date | null;
+  is_completed: boolean;
 }
 
 export const getGoals = async (): Promise<Goal[]> => {
   const [rows] = await pool.query('SELECT * FROM goals');
-  return rows as Goal[];
+  return rows as Goal[]; // returns an array of goal objects
 }
 
 export const addGoal = async (goal: Goal): Promise<void> => {
-  await pool.query('INSERT INTO goals (goal_id, description, is_completed, start_date, end_date) VALUES (?, ?, ?, ?, ?)', 
+  await pool.query('INSERT INTO goals (goal_id, description, is_completed) VALUES (?, ?, ?)', 
     [      
-      goal.goalId,
+      goal.goal_id,
       goal.description,
-      goal.isCompleted,
-      goal.startDate,
-      goal.endDate
+      goal.is_completed ? true : false
     ]
   )
 }
 
 export const deleteGoal = async (goalId: string): Promise<void> => {
-  await pool.query('DELETE FROM goals WHERE goal_id = ?', [goalId]);
+  await pool.query('DELETE  FROM  goals WHERE goal_id = ?', [goalId]);
 }
 
 export const updateGoal = async (goalId: String, description: string): Promise<void> => {
-  await pool.query('UPDATE goals SET description = ? WHERE goal_id = ?',     [description, goalId]);
+  await pool.query('UPDATE  goals SET description = ? WHERE goal_id = ?', [description, goalId]);
 }
 
 export const toggleGoalCompletion = async(goalId: string): Promise<void> => {
-  await pool.query('UPDATE  goals SET isCompleted = NOT WHERE goalId  = ?', [goalId])
+  await pool.query('UPDATE  goals SET is_completed = NOT is_completed WHERE goal_id  = ?', [goalId])
 }
-
-
-

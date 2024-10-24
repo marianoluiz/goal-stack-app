@@ -10,10 +10,11 @@ router.get('/goals', goalController.getGoals);
 router.post('/goals', goalController.addGoal);
 
 router.delete('/goals/:goalId', goalController.deleteGoal);
-//its :id cuz its parameter
+//its :id cuz its header
 
 router.put('/goals/:goalId', goalController.updateGoal);
 
 router.patch('/goals/:goalId', goalController.toggleGoalCompletion);
+
 
 export default router;

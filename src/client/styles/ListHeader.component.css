@@ -1,3 +1,12 @@
+.div-1st-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.insights-div {
+  font-size: 3.8rem;
+}
+
 .app-title {
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -26,10 +35,4 @@
   font-size: 1rem;
   cursor: pointer;
   flex: 0.2;
-}
-
-.insights-div {
-  display: flex;
-  justify-content: space-between;
-  font-size: 3rem;
 }

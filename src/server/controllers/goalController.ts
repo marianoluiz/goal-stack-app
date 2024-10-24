@@ -11,6 +11,7 @@ export const getGoals = async (_req: Request, res: Response) => {
     const goals = await goalModel.getGoals();
     res.json(goals);
   } catch (error) {
+    console.log(error)
     res.status(500).json({ error: 'Failed to fetch goals' });
   }
 };
@@ -19,11 +20,9 @@ export const addGoal = async (req: Request, res: Response) => {
   try {
     const { description } = req.body;
     const newGoal = { 
-      goalId: uuidv4()
+      goal_id: uuidv4()
       , description
-      , isCompleted: false
-      , startDate: new Date()
-      , endDate: null
+      , is_completed: false
     };
     
     await goalModel.addGoal(newGoal);
@@ -38,15 +37,16 @@ export const deleteGoal = async (req: Request, res: Response) => {
     const { goalId } = req.params;
     await goalModel.deleteGoal(goalId);
     res.status(204).end();
+    // no response
   } catch (error) {
-    res.status(500).json({ error: 'Failed to delete goal'})
+    res.status(500).json({ error: 'Failed to delete goal'});
   }
 }
 
 export const updateGoal = async (req: Request, res: Response) => {
   try {
     const { goalId } = req.params;
-    const description = req.body;
+    const { description } = req.body;
     await goalModel.updateGoal(goalId, description)
 
     res.status(200).json({ goalId, description })
@@ -64,5 +64,4 @@ export const toggleGoalCompletion = async (req: Request, res: Response) => {
   } catch {
     res.status(500).json({ error: 'Failed to toggle goal completion'})
   }
-
 };
